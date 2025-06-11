@@ -112,7 +112,7 @@
 - [x] Git-Repository initialisieren (11.06.2025)
 - [x] .gitignore für Java-Projekte erstellen (11.06.2025)
 - [x] Ersten Commit mit vollständigem Projektstand erstellen (11.06.2025)
-- [ ] Repository auf Git-Server (GitHub/GitLab) pushen
+- [x] Repository auf Git-Server (GitHub/GitLab) pushen (11.06.2025)
 - [ ] CI/CD Pipeline einrichten (optional)
 
 ---
@@ -163,7 +163,7 @@
 
 - **11.06.2025**: **Deployment-Ready**:
   - Vollständige Dokumentation in README.md und ANLEITUNG.md
-  - Git-Repository initialisiert und bereit für externen Push
+  - Git-Repository initialisiert und erfolgreich auf externen Git-Server gepusht
   - Maven-Build-System vollständig konfiguriert
   - JavaFX-Anwendung produktionsbereit
 
