@@ -1,6 +1,7 @@
 package de.berufsschule.kasse.util;
 
 import de.berufsschule.kasse.database.DatabaseManager;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import java.sql.SQLException;
@@ -16,15 +17,22 @@ import static org.junit.jupiter.api.Assertions.*;
  * @author FIAE24M
  * @version 1.0
  */
-class DatabaseInitializerTest {
+class DatabaseInitializerTest {    private static DatabaseInitializer initializer;
+    private static DatabaseManager dbManager;
 
-    private DatabaseInitializer initializer;
-    private DatabaseManager dbManager;
+    @BeforeAll
+    static void setUpClass() throws SQLException {
+        initializer = new DatabaseInitializer();
+        dbManager = DatabaseManager.getInstance();
+        
+        // Reason: Testdaten einmalig vor allen Tests initialisieren für bessere Performance
+        initializer.initialisiereMitTestdaten();
+    }
 
     @BeforeEach
     void setUp() {
-        initializer = new DatabaseInitializer();
-        dbManager = DatabaseManager.getInstance();
+        // Reason: Instanzvariablen für jeden Test verfügbar machen
+        // Keine erneute Initialisierung nötig, da Daten bereits vorhanden
     }
 
     @Test

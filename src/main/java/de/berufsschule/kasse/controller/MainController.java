@@ -131,22 +131,34 @@ public class MainController implements Initializable {
                 return null; // Nicht benötigt für ComboBox
             }
         });
-    }
-
-    /**
+    }    /**
      * Initialisiert die Event-Handler für alle Buttons.
      */
     private void initializeEventHandlers() {
-        btnProduktSpeichern.setOnAction(e -> produktHinzufuegen());
-        btnWarenzugangSpeichern.setOnAction(e -> warenzugangErfassen());
-        btnZumWarenkorbHinzufuegen.setOnAction(e -> produktZumWarenkorbHinzufuegen());
-        btnBonAnzeigen.setOnAction(e -> bonAnzeigenUndAbschliessen());
-        btnNeuerKassenvorgang.setOnAction(e -> neuerKassenvorgang());
+        // Header-Buttons für Navigation
+        btnKassenvorgang.setOnAction(e -> {
+            ladeDaten();
+            tabPane.getSelectionModel().select(3); // Kassenvorgang-Tab
+        });
+        btnProduktHinzufuegen.setOnAction(e -> {
+            tabPane.getSelectionModel().select(1); // Produkt hinzufügen-Tab
+        });
+        btnWarenzugang.setOnAction(e -> {
+            ladeDaten();
+            tabPane.getSelectionModel().select(2); // Warenzugang-Tab
+        });
         btnLagerbestand.setOnAction(e -> {
             ladeDaten();
             tabPane.getSelectionModel().select(0); // Lagerbestand-Tab
         });
         btnBeenden.setOnAction(e -> beenden());
+        
+        // Funktions-Buttons
+        btnProduktSpeichern.setOnAction(e -> produktHinzufuegen());
+        btnWarenzugangSpeichern.setOnAction(e -> warenzugangErfassen());
+        btnZumWarenkorbHinzufuegen.setOnAction(e -> produktZumWarenkorbHinzufuegen());
+        btnBonAnzeigen.setOnAction(e -> bonAnzeigenUndAbschliessen());
+        btnNeuerKassenvorgang.setOnAction(e -> neuerKassenvorgang());
     }
 
     /**

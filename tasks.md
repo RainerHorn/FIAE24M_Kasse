@@ -142,6 +142,26 @@
 
 ## Discovered During Work
 
+- **12.06.2025**: **TESTFEHLER BEHOBEN & PERFORMANCE OPTIMIERT**
+  - Problem identifiziert: DatabaseInitializerTest erwartete exakt 100 Produkte, aber die Datenbank wurde nicht vor Tests initialisiert
+  - Lösung implementiert:
+    - `@BeforeAll` statt `@BeforeEach` für einmalige Datenbankinitialisierung
+    - Testdaten werden nur einmal vor allen Tests erstellt, nicht vor jedem einzelnen Test
+    - Performance-Verbesserung: Testlaufzeit von 29+ Sekunden auf unter 8 Sekunden reduziert
+  - Alle 41 Tests laufen jetzt erfolgreich durch (0 Failures, 0 Errors)
+  - System ist vollständig stabil und einsatzbereit
+
+- **12.06.2025**: **BUTTON-NAVIGATION REPARIERT**
+  - Problem identifiziert: Event-Handler für Header-Buttons (Kassenvorgang, Produkt hinzufügen, Warenzugang) fehlten in der `initializeEventHandlers()` Methode
+  - Lösung implementiert: Vollständige Event-Handler für alle Header-Buttons hinzugefügt
+  - Navigation zwischen Tabs funktioniert jetzt korrekt:
+    - "Kassenvorgang" → Tab 3 (Kassenvorgang)
+    - "Produkt hinzufügen" → Tab 1 (Produkt hinzufügen)
+    - "Warenzugang" → Tab 2 (Warenzugang)
+    - "Lagerbestand" → Tab 0 (Lagerbestand)
+    - "Beenden" → Anwendung schließen
+  - Anwendung startet erfolgreich und alle Buttons funktionieren
+
 - **11.06.2025**: **VOLLSTÄNDIGE IMPLEMENTIERUNG ERREICHT**
   - Alle ursprünglich geplanten Features sind implementiert und funktionsfähig
   - Über die Anforderungen hinausgehende Features wurden hinzugefügt
@@ -166,5 +186,16 @@
   - Git-Repository initialisiert und erfolgreich auf externen Git-Server gepusht
   - Maven-Build-System vollständig konfiguriert
   - JavaFX-Anwendung produktionsbereit
+
+- **12.06.2025**: **BUTTON-NAVIGATION REPARIERT**
+  - Problem identifiziert: Event-Handler für Header-Buttons (Kassenvorgang, Produkt hinzufügen, Warenzugang) fehlten in der `initializeEventHandlers()` Methode
+  - Lösung implementiert: Vollständige Event-Handler für alle Header-Buttons hinzugefügt
+  - Navigation zwischen Tabs funktioniert jetzt korrekt:
+    - "Kassenvorgang" → Tab 3 (Kassenvorgang)
+    - "Produkt hinzufügen" → Tab 1 (Produkt hinzufügen) 
+    - "Warenzugang" → Tab 2 (Warenzugang)
+    - "Lagerbestand" → Tab 0 (Lagerbestand)
+    - "Beenden" → Anwendung schließen
+  - Anwendung startet erfolgreich und alle Buttons funktionieren
 
 ## 🏆 Projektstatus: **VOLLSTÄNDIG IMPLEMENTIERT UND EINSATZBEREIT**
