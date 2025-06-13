@@ -220,4 +220,36 @@
   - StatistikService für Datenabfragen
   - Tests für StatistikService implementieren
 
+---
+
+## 🚀 CI/CD Pipeline - GitLab Integration
+
+- [x] **GitHub Actions Pipeline** implementiert (12.06.2025)
+  - [x] Build & Test Matrix (Java 17/21)
+  - [x] Quality Analysis (SpotBugs, PMD, Checkstyle, JaCoCo)
+  - [x] Security Scan (OWASP Dependency Check)
+  - [x] Package (JAR mit Dependencies)
+  - [x] Documentation (JavaDoc, Maven Site)
+  - [x] Release Automation
+  - [x] Notification System
+- [x] **GitLab CI/CD Pipeline** angepasst (13.06.2025)
+  - [x] Von Self-hosted Runner auf GitLab Shared Runner umgestellt
+  - [x] Entfernung aller `tags: - mmbbs3` Konfigurationen
+  - [x] Pipeline läuft jetzt ohne weitere Runner-Setup
+  - [x] Sofort einsatzbereit für GitLab.com
+  - [x] Dokumentation entsprechend aktualisiert
+- [x] **Dokumentation** erweitert (13.06.2025)
+  - [x] GITLAB-CI-PIPELINE.md erstellt
+  - [x] Build-Skript für Linux/Mac (`build-gitlab.sh`)
+  - [x] README.md mit GitLab-Informationen aktualisiert
+  - [x] Cross-Platform CI/CD Support dokumentiert
+
+### Discovered During Work:
+- GitLab CI/CD bietet native SAST/Coverage Integration
+- GitLab Pages automatische Dokumentations-Hosting
+- Template-Vererbung für Matrix Builds eleganter als GitHub Actions
+- Self-hosted Runner Setup identisch mit entsprechenden Tags
+
+---
+
 ## 🏆 Projektstatus: **VOLLSTÄNDIG IMPLEMENTIERT UND EINSATZBEREIT**

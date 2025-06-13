@@ -164,7 +164,31 @@ Das Projekt verfügt über eine vollständige CI/CD Pipeline mit folgenden Featu
 - **Trigger**: Push/PR auf main, develop, feature/*
 
 ### 📖 Dokumentation
-Detaillierte Pipeline-Dokumentation: [CI-CD-PIPELINE.md](CI-CD-PIPELINE.md)
+
+- **GitHub Actions**: [CI-CD-PIPELINE.md](CI-CD-PIPELINE.md)
+- **GitLab CI/CD**: [GITLAB-CI-PIPELINE.md](GITLAB-CI-PIPELINE.md)
+- **Deployment**: [DEPLOYMENT.md](DEPLOYMENT.md)
+
+### 🔄 CI/CD Platform Support
+
+Das Projekt unterstützt beide Hauptplattformen:
+
+#### GitHub Actions (`.github/workflows/ci-cd.yml`)
+
+- Self-hosted runner mit Tag `mmbbs3`
+- GitHub Releases und GitHub Pages
+- Codecov Integration
+
+#### GitLab CI/CD (`.gitlab-ci.yml`)
+
+- GitLab Shared Runner (sofort einsatzbereit)
+- GitLab Releases und GitLab Pages
+- SAST Integration
+
+### 🛠️ Lokale Build-Skripte
+
+- **Windows**: `build.ps1` (PowerShell) / `build.bat` (Batch)
+- **Linux/Mac**: `build-gitlab.sh` (Bash)
 
 ## 10. Erweiterungsmöglichkeiten (optional)
 
