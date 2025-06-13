@@ -139,13 +139,41 @@ Dies erstellt die Datei `kasse.db` im Projekthauptverzeichnis mit realistischen 
 | Einhaltung der Struktur| 10 %       |
 | Datenbankanbindung     | 10 %       |
 
-## 9. Erweiterungsmöglichkeiten (optional)
+## 9. CI/CD Pipeline
+
+Das Projekt verfügt über eine vollständige CI/CD Pipeline mit folgenden Features:
+
+### 🚀 Pipeline-Jobs
+- **Build & Test**: Kompilierung und Ausführung aller 50 Unit-Tests
+- **Quality Analysis**: SpotBugs, PMD, Checkstyle Code-Qualitätsprüfung
+- **Security Scan**: OWASP Dependency Check für Sicherheit
+- **Package**: Erstellung ausführbarer JAR-Dateien
+- **Documentation**: JavaDoc und Maven Site Generation
+- **Release**: Automatisierte Release-Erstellung
+- **Notification**: Pipeline-Status-Benachrichtigungen
+
+### 📊 Quality Gates
+- **Code Coverage**: Minimum 80% (JaCoCo)
+- **Security**: CVSS Score < 8.0 (OWASP)
+- **Code Style**: Checkstyle-Konformität
+- **Static Analysis**: SpotBugs und PMD Checks
+
+### 🏗️ Self-Hosted Runner
+- **Tag**: `mmbbs3`
+- **Java**: 17 und 21 Matrix Build
+- **Trigger**: Push/PR auf main, develop, feature/*
+
+### 📖 Dokumentation
+Detaillierte Pipeline-Dokumentation: [CI-CD-PIPELINE.md](CI-CD-PIPELINE.md)
+
+## 10. Erweiterungsmöglichkeiten (optional)
 
 - Export des Bons als PDF
 - Rabattfunktion
 - Produktkategorien
 - Benutzerverwaltung
+- Dashboard mit Statistiken ✅ **Implementiert**
 
 ---
 
-**Hinweis:** Dieses Pflichtenheft erweitert die Mindestanforderungen des Lastenhefts um JavaFX und Datenbankintegration zur professionellen Anwendung.
+**Hinweis:** Dieses Pflichtenheft erweitert die Mindestanforderungen des Lastenhefts um JavaFX, Datenbankintegration und CI/CD Pipeline zur professionellen Anwendung.

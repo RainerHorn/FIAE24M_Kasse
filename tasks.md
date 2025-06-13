@@ -192,7 +192,7 @@
   - Lösung implementiert: Vollständige Event-Handler für alle Header-Buttons hinzugefügt
   - Navigation zwischen Tabs funktioniert jetzt korrekt:
     - "Kassenvorgang" → Tab 3 (Kassenvorgang)
-    - "Produkt hinzufügen" → Tab 1 (Produkt hinzufügen) 
+    - "Produkt hinzufügen" → Tab 1 (Produkt hinzufügen)
     - "Warenzugang" → Tab 2 (Warenzugang)
     - "Lagerbestand" → Tab 0 (Lagerbestand)
     - "Beenden" → Anwendung schließen
@@ -202,7 +202,7 @@
 
 ## 🚀 Feature Branch: UI-Improvements
 
-- [ ] **Feature Branch erstellt** (12.06.2025)
+- [x] **Feature Branch erstellt** (12.06.2025)
   - Branch: `feature/ui-improvements`
   - Zweck: Verbesserungen der Benutzeroberfläche und User Experience
   - Geplante Features:
@@ -210,5 +210,14 @@
     - Keyboard Shortcuts hinzufügen
     - Visuelles Feedback verbessern
     - Accessibility Features implementieren
+
+- [ ] **Dashboard mit Statistiken** (12.06.2025)
+  - Neuer Tab für Dashboard-Ansicht
+  - Echtzeit-Umsatzanzeige des aktuellen Tages
+  - Top 5 meistverkaufte Produkte
+  - Niedrigbestand-Warnungen (< 10 Stück)
+  - Gesamtanzahl Verkäufe heute
+  - StatistikService für Datenabfragen
+  - Tests für StatistikService implementieren
 
 ## 🏆 Projektstatus: **VOLLSTÄNDIG IMPLEMENTIERT UND EINSATZBEREIT**

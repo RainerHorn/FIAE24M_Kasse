@@ -62,12 +62,14 @@ mvn test
 ## Datenbankstruktur
 
 ### Tabelle `produkte`
+
 - `id` - Eindeutige Produkt-ID (Auto-Increment)
 - `name` - Produktname (eindeutig)
 - `preis` - Preis in Euro
 - `bestand` - Aktueller Lagerbestand
 
 ### Tabelle `verkaeufe`
+
 - `id` - Eindeutige Verkaufs-ID (Auto-Increment)
 - `timestamp` - Zeitpunkt des Verkaufs
 - `produkt_id` - Referenz auf Produkt
@@ -78,13 +80,17 @@ mvn test
 ## Troubleshooting
 
 ### JavaFX-Module nicht gefunden
+
 Falls JavaFX-Module nicht gefunden werden, stellen Sie sicher, dass Sie Java 17+ verwenden und Maven ordnungsgemäß konfiguriert ist.
 
 ### Datenbankfehler
+
 Die SQLite-Datenbank wird automatisch im Hauptverzeichnis erstellt. Bei Problemen können Sie die Datei `kasse.db` löschen - sie wird beim nächsten Start neu erstellt.
 
 ### Tests schlagen fehl
+
 Stellen Sie sicher, dass alle Dependencies korrekt installiert sind:
+
 ```bash
 mvn clean install
 ```

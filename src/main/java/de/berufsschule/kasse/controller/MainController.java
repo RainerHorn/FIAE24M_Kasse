@@ -2,6 +2,7 @@ package de.berufsschule.kasse.controller;
 
 import de.berufsschule.kasse.model.Produkt;
 import de.berufsschule.kasse.service.KassenService;
+import de.berufsschule.kasse.service.StatistikService;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -23,11 +24,20 @@ import java.util.ResourceBundle;
  */
 public class MainController implements Initializable {
     
+    @FXML private Button btnDashboard;
     @FXML private Button btnKassenvorgang;
     @FXML private Button btnProduktHinzufuegen;
     @FXML private Button btnWarenzugang;
     @FXML private Button btnLagerbestand;
     @FXML private Button btnBeenden;
+    
+    // Dashboard-Elemente
+    @FXML private Label lblTagesumsatz;
+    @FXML private Label lblAnzahlVerkaufe;
+    @FXML private Label lblNiedrigbestand;
+    @FXML private ListView<String> listTopProdukte;
+    @FXML private ListView<String> listNiedrigbestand;
+    @FXML private Button btnDashboardAktualisieren;
     
     @FXML private TableView<Produkt> tableLagerbestand;
     @FXML private TableColumn<Produkt, Integer> colId;
@@ -55,8 +65,8 @@ public class MainController implements Initializable {
     @FXML private TextArea txtBonAnzeige;
     
     @FXML private TabPane tabPane;
-    
-    private final KassenService kassenService;
+      private final KassenService kassenService;
+    private final StatistikService statistikService;
     private final ObservableList<Produkt> produktListe;
 
     /**
@@ -64,16 +74,16 @@ public class MainController implements Initializable {
      */
     public MainController() {
         this.kassenService = new KassenService();
+        this.statistikService = new StatistikService();
         this.produktListe = FXCollections.observableArrayList();
-    }
-
-    @Override
+    }    @Override
     public void initialize(URL location, ResourceBundle resources) {
         initializeTableView();
         initializeComboBoxes();
         initializeEventHandlers();
         ladeDaten();
         aktualisiereWarenkorbAnzeige();
+        aktualisiereDashboard();
     }
 
     /**
@@ -133,25 +143,31 @@ public class MainController implements Initializable {
         });
     }    /**
      * Initialisiert die Event-Handler für alle Buttons.
-     */
-    private void initializeEventHandlers() {
+     */    private void initializeEventHandlers() {
         // Header-Buttons für Navigation
+        btnDashboard.setOnAction(e -> {
+            aktualisiereDashboard();
+            tabPane.getSelectionModel().select(0); // Dashboard-Tab
+        });
         btnKassenvorgang.setOnAction(e -> {
             ladeDaten();
-            tabPane.getSelectionModel().select(3); // Kassenvorgang-Tab
+            tabPane.getSelectionModel().select(4); // Kassenvorgang-Tab (Index verschiebt sich)
         });
         btnProduktHinzufuegen.setOnAction(e -> {
-            tabPane.getSelectionModel().select(1); // Produkt hinzufügen-Tab
+            tabPane.getSelectionModel().select(2); // Produkt hinzufügen-Tab
         });
         btnWarenzugang.setOnAction(e -> {
             ladeDaten();
-            tabPane.getSelectionModel().select(2); // Warenzugang-Tab
+            tabPane.getSelectionModel().select(3); // Warenzugang-Tab
         });
         btnLagerbestand.setOnAction(e -> {
             ladeDaten();
-            tabPane.getSelectionModel().select(0); // Lagerbestand-Tab
+            tabPane.getSelectionModel().select(1); // Lagerbestand-Tab
         });
         btnBeenden.setOnAction(e -> beenden());
+        
+        // Dashboard-Button
+        btnDashboardAktualisieren.setOnAction(e -> aktualisiereDashboard());
         
         // Funktions-Buttons
         btnProduktSpeichern.setOnAction(e -> produktHinzufuegen());
@@ -306,6 +322,53 @@ public class MainController implements Initializable {
         listWarenkorb.setItems(warenkorbItems);
         lblGesamtbetrag.setText(String.format("Gesamtbetrag: %.2f€", 
                                             kassenService.getAktuellerWarenkorb().berechneGesamtbetrag()));
+    }
+
+    /**
+     * Aktualisiert alle Dashboard-Daten.
+     */
+    private void aktualisiereDashboard() {
+        try {
+            // Tagesumsatz aktualisieren
+            double tagesumsatz = statistikService.getTagesumsatz();
+            lblTagesumsatz.setText(String.format("%.2f€", tagesumsatz));
+            
+            // Anzahl Verkäufe aktualisieren
+            int anzahlVerkaufe = statistikService.getAnzahlVerkaufeHeute();
+            lblAnzahlVerkaufe.setText(String.valueOf(anzahlVerkaufe));
+            
+            // Top Produkte aktualisieren
+            var topProdukte = statistikService.getTop5ProdukteMenge();
+            ObservableList<String> topProdukteStrings = FXCollections.observableArrayList();
+            
+            if (topProdukte.isEmpty()) {
+                topProdukteStrings.add("Noch keine Verkäufe heute");
+            } else {
+                for (int i = 0; i < topProdukte.size(); i++) {
+                    var produkt = topProdukte.get(i);
+                    topProdukteStrings.add(String.format("%d. %s", (i + 1), produkt.toString()));
+                }
+            }
+            listTopProdukte.setItems(topProdukteStrings);
+            
+            // Niedrigbestand aktualisieren
+            var niedrigbestandProdukte = statistikService.getNiedrigbestandProdukte();
+            lblNiedrigbestand.setText(String.valueOf(niedrigbestandProdukte.size()));
+            
+            ObservableList<String> niedrigbestandStrings = FXCollections.observableArrayList();
+            if (niedrigbestandProdukte.isEmpty()) {
+                niedrigbestandStrings.add("Keine Warnungen");
+            } else {
+                for (var produkt : niedrigbestandProdukte) {
+                    niedrigbestandStrings.add(String.format("%s (Bestand: %d)", 
+                                            produkt.getName(), produkt.getBestand()));
+                }
+            }
+            listNiedrigbestand.setItems(niedrigbestandStrings);
+            
+        } catch (StatistikService.StatistikServiceException e) {
+            zeigeFehlermeldung("Fehler beim Laden der Dashboard-Daten", e.getMessage());
+        }
     }
 
     /**

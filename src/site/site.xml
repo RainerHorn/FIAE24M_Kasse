@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="FIAE24M Kassensystem"
+         xmlns="http://maven.apache.org/DECORATION/1.8.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/DECORATION/1.8.0 
+         http://maven.apache.org/xsd/decoration-1.8.0.xsd">
+
+  <bannerLeft>
+    <name>FIAE24M Kassensystem</name>
+  </bannerLeft>
+
+  <publishDate position="right"/>
+  <version position="right"/>
+
+  <body>
+    <menu name="Übersicht">
+      <item name="Einführung" href="index.html"/>
+      <item name="Anleitung" href="anleitung.html"/>
+    </menu>
+
+    <menu name="Dokumentation">
+      <item name="JavaDoc" href="apidocs/index.html"/>
+      <item name="Test Berichte" href="surefire-report.html"/>
+      <item name="Code Coverage" href="jacoco/index.html"/>
+    </menu>
+
+    <menu name="Code Qualität">
+      <item name="SpotBugs" href="spotbugs.html"/>
+      <item name="PMD" href="pmd.html"/>
+      <item name="Checkstyle" href="checkstyle.html"/>
+    </menu>
+
+    <menu name="Sicherheit">
+      <item name="Dependency Check" href="dependency-check-report.html"/>
+    </menu>
+
+    <menu ref="reports"/>
+  </body>
+</project>
