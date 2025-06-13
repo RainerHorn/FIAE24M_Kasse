@@ -113,7 +113,7 @@
 - [x] .gitignore für Java-Projekte erstellen (11.06.2025)
 - [x] Ersten Commit mit vollständigem Projektstand erstellen (11.06.2025)
 - [x] Repository auf Git-Server (GitHub/GitLab) pushen (11.06.2025)
-- [ ] CI/CD Pipeline einrichten (optional)
+- [x] CI/CD Pipeline einrichten ✅ **GitLab (13.06.2025)** ✅ **GitHub Actions (13.06.2025)**
 
 ---
 
@@ -222,8 +222,9 @@
 
 ---
 
-## 🚀 CI/CD Pipeline - GitLab Integration
+## 🚀 CI/CD Pipeline - Vollständige Migration auf Standard Runner
 
+### GitHub Actions (13.06.2025)
 - [x] **GitHub Actions Pipeline** implementiert (12.06.2025)
   - [x] Build & Test Matrix (Java 17/21)
   - [x] Quality Analysis (SpotBugs, PMD, Checkstyle, JaCoCo)
@@ -232,6 +233,13 @@
   - [x] Documentation (JavaDoc, Maven Site)
   - [x] Release Automation
   - [x] Notification System
+- [x] **Migration auf Standard Runner** (13.06.2025)
+  - [x] Von Self-hosted Runner (`mmbbs3`) auf `ubuntu-latest` umgestellt
+  - [x] Alle 7 Pipeline-Jobs auf Standard Runner migriert
+  - [x] Dokumentation entsprechend aktualisiert
+  - [x] Build-Skripte für lokale GitHub Actions Simulation erstellt
+
+### GitLab CI/CD (13.06.2025)
 - [x] **GitLab CI/CD Pipeline** angepasst (13.06.2025)
   - [x] Von Self-hosted Runner auf GitLab Shared Runner umgestellt
   - [x] Entfernung aller `tags: - mmbbs3` Konfigurationen
@@ -244,11 +252,21 @@
   - [x] README.md mit GitLab-Informationen aktualisiert
   - [x] Cross-Platform CI/CD Support dokumentiert
 
-### Discovered During Work:
+### Lokale Pipeline-Simulation
+- [x] **GitHub Actions Simulation** (13.06.2025)
+  - [x] `build-github.sh` (Linux/Mac)
+  - [x] `build-github.bat` (Windows)
+  - [x] Stage-spezifische Ausführung (--build-only, --quality-only, etc.)
+- [x] **GitLab CI Simulation** (13.06.2025)
+  - [x] `build-gitlab.sh` (Linux/Mac)
+  - [x] `build.ps1`, `build.bat` (Windows)
+
+### Erkenntnisse aus der Implementierung:
 - GitLab CI/CD bietet native SAST/Coverage Integration
 - GitLab Pages automatische Dokumentations-Hosting
 - Template-Vererbung für Matrix Builds eleganter als GitHub Actions
-- Self-hosted Runner Setup identisch mit entsprechenden Tags
+- GitHub Actions Standard Runner bieten exzellente Performance ohne Setup-Aufwand
+- Beide Plattformen unterstützen identische Funktionalität mit unterschiedlicher Syntax
 
 ---
 

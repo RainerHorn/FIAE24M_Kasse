@@ -158,8 +158,8 @@ Das Projekt verfügt über eine vollständige CI/CD Pipeline mit folgenden Featu
 - **Code Style**: Checkstyle-Konformität
 - **Static Analysis**: SpotBugs und PMD Checks
 
-### 🏗️ Self-Hosted Runner
-- **Tag**: `mmbbs3`
+### 🏗️ GitHub Actions Pipeline
+- **Runner**: `ubuntu-latest` (Standard GitHub Runner)
 - **Java**: 17 und 21 Matrix Build
 - **Trigger**: Push/PR auf main, develop, feature/*
 
@@ -175,7 +175,7 @@ Das Projekt unterstützt beide Hauptplattformen:
 
 #### GitHub Actions (`.github/workflows/ci-cd.yml`)
 
-- Self-hosted runner mit Tag `mmbbs3`
+- Standard ubuntu-latest runner für optimale Performance
 - GitHub Releases und GitHub Pages
 - Codecov Integration
 
@@ -187,8 +187,24 @@ Das Projekt unterstützt beide Hauptplattformen:
 
 ### 🛠️ Lokale Build-Skripte
 
+#### GitHub Actions Simulation
+- **Windows**: `build-github.bat` (Batch)
+- **Linux/Mac**: `build-github.sh` (Bash)
+
+#### GitLab CI Simulation  
 - **Windows**: `build.ps1` (PowerShell) / `build.bat` (Batch)
 - **Linux/Mac**: `build-gitlab.sh` (Bash)
+
+#### Verwendung:
+```bash
+# Vollständige Pipeline simulieren
+./build-github.sh
+
+# Nur spezifische Stages
+./build-github.sh --build-only
+./build-github.sh --quality-only
+./build-github.sh --security-only
+```
 
 ## 10. Erweiterungsmöglichkeiten (optional)
 

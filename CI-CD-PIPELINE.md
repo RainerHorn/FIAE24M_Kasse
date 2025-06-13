@@ -2,14 +2,15 @@
 
 ## Übersicht
 
-Diese CI/CD Pipeline wurde speziell für das FIAE24M Kassensystem entwickelt und verwendet den Self-Hosted Runner mit dem Tag **mmbbs3**.
+Diese CI/CD Pipeline wurde für das FIAE24M Kassensystem entwickelt und verwendet **GitHub Standard Runner (ubuntu-latest)** für optimale Kompatibilität und Performance.
 
 ## Pipeline-Architektur
 
 Die Pipeline besteht aus 7 Hauptjobs, die in folgender Reihenfolge ausgeführt werden:
 
 ### 1. Build & Test Job (`build-and-test`)
-- **Runner**: [self-hosted, mmbbs3]
+
+- **Runner**: ubuntu-latest
 - **Matrix Build**: Java 17 und 21
 - **Aufgaben**:
   - Projekt-Struktur validieren
@@ -19,7 +20,7 @@ Die Pipeline besteht aus 7 Hauptjobs, die in folgender Reihenfolge ausgeführt w
   - Test-Artefakte hochladen
 
 ### 2. Quality Analysis Job (`quality-analysis`)
-- **Runner**: [self-hosted, mmbbs3]
+- **Runner**: ubuntu-latest
 - **Abhängigkeiten**: build-and-test
 - **Aufgaben**:
   - SpotBugs statische Code-Analyse
@@ -29,14 +30,14 @@ Die Pipeline besteht aus 7 Hauptjobs, die in folgender Reihenfolge ausgeführt w
   - Quality Reports als Artefakte speichern
 
 ### 3. Security Scan Job (`security-scan`)
-- **Runner**: [self-hosted, mmbbs3]
+- **Runner**: ubuntu-latest
 - **Abhängigkeiten**: build-and-test
 - **Aufgaben**:
   - OWASP Dependency Check
   - Sicherheitsbericht als Artefakt speichern
 
 ### 4. Package Job (`package`)
-- **Runner**: [self-hosted, mmbbs3]
+- **Runner**: ubuntu-latest
 - **Abhängigkeiten**: build-and-test, quality-analysis
 - **Auslöser**: Nur bei main-Branch oder Release
 - **Aufgaben**:
@@ -46,15 +47,15 @@ Die Pipeline besteht aus 7 Hauptjobs, die in folgender Reihenfolge ausgeführt w
   - Deployment-Artefakte hochladen
 
 ### 5. Documentation Job (`documentation`)
-- **Runner**: [self-hosted, mmbbs3]
+- **Runner**: ubuntu-latest
 - **Abhängigkeiten**: build-and-test
-- **Aufgaben**:
-  - JavaDoc generieren
+- **Aufgaben**:  - JavaDoc generieren
   - Maven Site Documentation erstellen
   - Dokumentation als Artefakte speichern
 
 ### 6. Release Job (`release`)
-- **Runner**: [self-hosted, mmbbs3]
+
+- **Runner**: ubuntu-latest
 - **Abhängigkeiten**: package, documentation, security-scan
 - **Auslöser**: Nur bei GitHub Release
 - **Aufgaben**:
@@ -62,7 +63,8 @@ Die Pipeline besteht aus 7 Hauptjobs, die in folgender Reihenfolge ausgeführt w
   - Assets an GitHub Release anhängen
 
 ### 7. Notification Job (`notify`)
-- **Runner**: [self-hosted, mmbbs3]
+
+- **Runner**: ubuntu-latest
 - **Abhängigkeiten**: build-and-test, quality-analysis, security-scan
 - **Aufgaben**:
   - Erfolgs-/Fehlermeldungen ausgeben
@@ -178,21 +180,53 @@ Die Pipeline wird ausgelöst bei:
 </plugin>
 ```
 
-## Lokale Ausführung
+## Lokale Pipeline-Simulation
 
-### Alle Tests ausführen
+### GitHub Actions Pipeline simulieren
+
+**Linux/Mac:**
+```bash
+chmod +x build-github.sh
+./build-github.sh
+```
+
+**Windows:**
+```powershell
+.\build-github.bat
+```
+
+### Einzelne Pipeline-Stages ausführen
+
+**Nur Build & Test:**
+```bash
+./build-github.sh --build-only
+```
+
+**Nur Quality Analysis:**
+```bash
+./build-github.sh --quality-only
+```
+
+**Nur Security Scan:**
+```bash
+./build-github.sh --security-only
+```
+
+### Manuelle Kommandos
+
+#### Alle Tests ausführen
 ```bash
 mvn clean test
 ```
 
-### Quality Checks
+#### Quality Checks
 ```bash
 mvn checkstyle:check
 mvn pmd:check  
 mvn spotbugs:check
 ```
 
-### Security Scan
+#### Security Scan
 ```bash
 mvn org.owasp:dependency-check-maven:check
 ```
@@ -236,17 +270,18 @@ Maven-Konfiguration mit allen Plugins und Reporting.
 - ✅ **Erfolg**: Pipeline-Details werden ausgegeben
 - ❌ **Fehler**: Fehlerhafte Jobs werden identifiziert
 
-## Self-Hosted Runner Anforderungen
+## Standard Runner Anforderungen
 
-### Hardware
-- **Tag**: mmbbs3
-- **Java**: 17 und 21 erforderlich
-- **Maven**: 3.6+ erforderlich
-- **Git**: Für Checkout
+### Software-Environment
+- **Runner**: ubuntu-latest (GitHub Actions Standard Runner)
+- **Java**: 17 und 21 erforderlich (automatisch bereitgestellt)
+- **Maven**: 3.6+ erforderlich (automatisch bereitgestellt)
+- **Git**: Für Checkout (automatisch bereitgestellt)
 
-### Software
-- Windows/Linux kompatibel
-- Ausreichend Festplattenspeicher für Maven Dependencies
+### Vorteile
+- Keine Hardware-Wartung erforderlich
+- Automatisch aktualisierte Software-Stack
+- Optimale Performance und Skalierbarkeit
 - Netzwerkzugriff zu Maven Central Repository
 
 ## Troubleshooting
@@ -282,6 +317,6 @@ Maven-Konfiguration mit allen Plugins und Reporting.
 ---
 
 **Erstellt für**: FIAE24M Kassensystem  
-**Runner**: mmbbs3  
-**Version**: 1.0  
+**Runner**: ubuntu-latest (GitHub Actions Standard Runner)  
+**Version**: 2.0  
 **Letzte Aktualisierung**: Juni 2025
