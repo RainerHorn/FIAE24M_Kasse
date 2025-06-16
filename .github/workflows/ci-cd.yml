@@ -47,7 +47,7 @@ jobs:
         test -d src/test/java || exit 1
         test -f src/main/resources/fxml/main.fxml || exit 1
         echo "✅ Project structure is valid"    - name: Compile Code
-      run: mvn clean compile -B
+        mvn clean compile -B
 
     - name: Run Unit Tests
       run: mvn test -B
