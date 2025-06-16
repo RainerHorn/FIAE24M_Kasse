@@ -46,6 +46,12 @@
   - [x] 6 YAML-Strukturfehler behoben
   - [x] Pipeline validiert und funktionsfähig
   - [x] YAML-Mapping-Alignment korrigiert (16.06.2025)
+  - [x] **Kritische YAML-Syntaxfehler behoben (16.06.2025)**
+    - [x] Fehlende Zeilenumbrüche zwischen YAML-Mapping-Items korrigiert
+    - [x] Falsche Einrückung von `steps:` unter `strategy:` behoben
+    - [x] Vollständige Pipeline-Datei neu geschrieben mit korrekter YAML-Syntax
+    - [x] Lokale Tests bestätigen: Kompilierung ✅, Unit-Tests ✅, Checkstyle ✅
+    - [x] Pipeline sollte jetzt auf GitHub erfolgreich laufen
 
 ---
 
