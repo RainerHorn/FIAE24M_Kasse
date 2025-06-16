@@ -280,13 +280,15 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
                 <version>3.4.1</version>
-            </plugin>
-
-            <!-- OWASP Dependency Check Plugin -->
+            </plugin>            <!-- OWASP Dependency Check Plugin -->
             <plugin>
                 <groupId>org.owasp</groupId>
                 <artifactId>dependency-check-maven</artifactId>
                 <version>8.4.0</version>
+                <configuration>
+                    <!-- Deaktiviere .NET AssemblyAnalyzer (benötigt .NET 6.0 Runtime) -->
+                    <assemblyAnalyzerEnabled>false</assemblyAnalyzerEnabled>
+                </configuration>
                 <reportSets>
                     <reportSet>
                         <reports>

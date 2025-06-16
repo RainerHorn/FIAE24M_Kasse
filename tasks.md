@@ -49,8 +49,9 @@
 
 - [x] OWASP Dependency Check AssemblyAnalyzer-Fehler behoben (16.06.2025)
   - Problem: .NET AssemblyAnalyzer benötigt .NET 6.0 Runtime/SDK, welches nicht auf GitHub Actions standardmäßig installiert ist
-  - Lösung: `<assemblyAnalyzerEnabled>false</assemblyAnalyzerEnabled>` in pom.xml hinzugefügt
+  - Lösung: `<assemblyAnalyzerEnabled>false</assemblyAnalyzerEnabled>` in pom.xml hinzugefügt (sowohl in Build- als auch Reporting-Sektion)
   - Security Scan läuft jetzt erfolgreich ohne .NET-Abhängigkeiten
+  - Site-Building mit Dependency Check Report funktioniert wieder
   - Alle anderen Analyzer (CPE, NVD CVE, Sonatype OSS Index, etc.) funktionieren weiterhin
 
 ---
