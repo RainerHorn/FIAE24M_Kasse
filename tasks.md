@@ -34,6 +34,19 @@
   - `String.format()` mit `Locale.GERMAN` erweitert für konsistente deutsche Dezimaldarstellung
   - Alle 50 Tests laufen jetzt erfolgreich auf GitHub Actions
 
+- [x] Maven Site Plugin Konfigurationsfehler behoben (16.06.2025)
+  - Surefire Report Plugin von 3.0.0 auf 3.5.3 aktualisiert
+  - Site Plugin von 3.12.1 auf 4.0.0-M13 aktualisiert mit Fluido Skin
+  - `site.xml` mit korrektem Skin-Model migriert
+  - `<name>` Tag in pom.xml korrigiert (war fälschlicherweise `<n>`)
+  - Vollständiges Site-Building funktioniert wieder (mvn site)
+
+- [x] Nicht benötigte YAML-Dateien entfernt (16.06.2025)
+  - `.github\workflows\ci-cd-fixed.yml` (Duplikat) entfernt
+  - `.gitlab-ci.yml` (nicht verwendet) entfernt  
+  - `.gitlab-ci-shared.yml` (Duplikat) entfernt
+  - Nur `.github\workflows\ci-cd.yml` für GitHub Actions beibehalten
+
 ---
 
 ## 🧹 Code-Qualität & Standards
