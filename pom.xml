@@ -152,8 +152,7 @@
                     <failsOnError>false</failsOnError>
                 </configuration>
             </plugin>
-            
-            <!-- OWASP Dependency Check für Sicherheit -->
+              <!-- OWASP Dependency Check für Sicherheit -->
             <plugin>
                 <groupId>org.owasp</groupId>
                 <artifactId>dependency-check-maven</artifactId>
@@ -161,6 +160,8 @@
                 <configuration>
                     <failBuildOnCVSS>8</failBuildOnCVSS>
                     <format>ALL</format>
+                    <!-- Deaktiviere .NET AssemblyAnalyzer (benötigt .NET 6.0 Runtime) -->
+                    <assemblyAnalyzerEnabled>false</assemblyAnalyzerEnabled>
                 </configuration>
             </plugin>
             

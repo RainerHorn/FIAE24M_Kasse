@@ -47,6 +47,12 @@
   - `.gitlab-ci-shared.yml` (Duplikat) entfernt
   - Nur `.github\workflows\ci-cd.yml` für GitHub Actions beibehalten
 
+- [x] OWASP Dependency Check AssemblyAnalyzer-Fehler behoben (16.06.2025)
+  - Problem: .NET AssemblyAnalyzer benötigt .NET 6.0 Runtime/SDK, welches nicht auf GitHub Actions standardmäßig installiert ist
+  - Lösung: `<assemblyAnalyzerEnabled>false</assemblyAnalyzerEnabled>` in pom.xml hinzugefügt
+  - Security Scan läuft jetzt erfolgreich ohne .NET-Abhängigkeiten
+  - Alle anderen Analyzer (CPE, NVD CVE, Sonatype OSS Index, etc.) funktionieren weiterhin
+
 ---
 
 ## 🧹 Code-Qualität & Standards
