@@ -54,6 +54,16 @@
   - Site-Building mit Dependency Check Report funktioniert wieder
   - Alle anderen Analyzer (CPE, NVD CVE, Sonatype OSS Index, etc.) funktionieren weiterhin
 
+- [x] CI/CD Pipeline für Feature Branches optimiert (16.06.2025)
+  - Package Job läuft jetzt auch auf Feature Branches (nicht nur main/release)
+  - Ermöglicht vollständigen Test der Packaging-Pipeline während Entwicklung
+  - Release Job bleibt weiterhin nur für echte GitHub Releases
+
+- [x] Feature Branch ui-improvements in main gemerged (16.06.2025)
+  - Alle Bugfixes und Verbesserungen sind jetzt im main Branch verfügbar
+  - CI/CD Pipeline läuft vollständig auf main Branch mit Package-Artefakten
+  - Projekt-Cleanup: Debug-Dateien und alte Task-Dateien entfernt
+
 ---
 
 ## 🧹 Code-Qualität & Standards
