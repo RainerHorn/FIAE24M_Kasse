@@ -86,9 +86,7 @@ class VerkaufTest {
         assertEquals(testZeitpunkt, verkauf.getTimestamp());
         assertEquals(42, verkauf.getProduktId());
         assertEquals("Neuer Name", verkauf.getProduktName());
-    }
-
-    @Test
+    }    @Test
     void testToString() {
         // Happy Path: Prüfe String-Darstellung
         String result = verkauf.toString();

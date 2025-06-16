@@ -56,8 +56,7 @@
                     <target>17</target>
                 </configuration>
             </plugin>
-            
-            <!-- Surefire Plugin für Tests -->
+              <!-- Surefire Plugin für Tests -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
@@ -66,6 +65,7 @@
                     <includes>
                         <include>**/*Test.java</include>
                     </includes>
+                    <argLine>-Dfile.encoding=UTF-8 -Dsun.jnu.encoding=UTF-8</argLine>
                 </configuration>
             </plugin>
             

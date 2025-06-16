@@ -52,6 +52,11 @@
     - [x] Vollständige Pipeline-Datei neu geschrieben mit korrekter YAML-Syntax
     - [x] Lokale Tests bestätigen: Kompilierung ✅, Unit-Tests ✅, Checkstyle ✅
     - [x] Pipeline sollte jetzt auf GitHub erfolgreich laufen
+  - [x] **Test-Kodierungsfehler behoben (16.06.2025)**
+    - [x] Problem: `VerkaufTest.testToString` fehlgeschlagen wegen Euro-Symbol in Windows-1252-Kodierung
+    - [x] Maven Surefire Plugin mit UTF-8-Kodierung konfiguriert (`-Dfile.encoding=UTF-8`)
+    - [x] Alle 50 Tests bestehen jetzt erfolgreich
+    - [x] Test-Robustheit gegen Zeichenkodierungsprobleme verbessert
 
 ---
 
