@@ -3,7 +3,12 @@ package de.berufsschule.kasse.database;
 import de.berufsschule.kasse.model.Produkt;
 import de.berufsschule.kasse.model.Verkauf;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,11 +17,10 @@ import java.util.List;
  * 
  * Diese Klasse stellt alle CRUD-Operationen für Produkte und Verkäufe bereit
  * und verwendet SQLite als eingebettete Datenbank.
- * 
- * @author FIAE24M
+ *  * @author FIAE24M
  * @version 1.0
  */
-public class DatabaseManager {
+public final class DatabaseManager {
     private static final String DATABASE_URL = "jdbc:sqlite:kasse.db";
     private static DatabaseManager instance;
 
@@ -223,9 +227,9 @@ public class DatabaseManager {
      * 
      * @param verkauf der zu speichernde Verkauf
      * @throws SQLException bei Datenbankfehlern
-     */
-    public void speichereVerkauf(Verkauf verkauf) throws SQLException {
-        String sql = "INSERT INTO verkaeufe (timestamp, produkt_id, menge, einzelpreis, gesamtpreis) VALUES (?, ?, ?, ?, ?)";
+     */    public void speichereVerkauf(Verkauf verkauf) throws SQLException {
+        String sql = "INSERT INTO verkaeufe (timestamp, produkt_id, menge, einzelpreis, gesamtpreis) "
+                + "VALUES (?, ?, ?, ?, ?)";
         
         try (Connection conn = getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {

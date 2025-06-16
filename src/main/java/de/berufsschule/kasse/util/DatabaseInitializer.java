@@ -148,24 +148,23 @@ public class DatabaseInitializer {
      */
     private double generiereRealistischenPreis(String produktName) {
         String lowerName = produktName.toLowerCase();
-        
-        // Kategoriebasierte Preisgestaltung
-        if (lowerName.contains("obst") || lowerName.contains("apfel") || 
-            lowerName.contains("banane") || lowerName.contains("orange")) {
+          // Kategoriebasierte Preisgestaltung
+        if (lowerName.contains("obst") || lowerName.contains("apfel") 
+            || lowerName.contains("banane") || lowerName.contains("orange")) {
             return rundePReisAuf(0.30 + random.nextDouble() * 2.70); // 0.30€ - 3.00€
-        } else if (lowerName.contains("fleisch") || lowerName.contains("filet") ||
-                  lowerName.contains("steak")) {
+        } else if (lowerName.contains("fleisch") || lowerName.contains("filet")
+                  || lowerName.contains("steak")) {
             return rundePReisAuf(8.00 + random.nextDouble() * 17.00); // 8.00€ - 25.00€
-        } else if (lowerName.contains("milch") || lowerName.contains("joghurt") ||
-                  lowerName.contains("käse")) {
+        } else if (lowerName.contains("milch") || lowerName.contains("joghurt")
+                  || lowerName.contains("käse")) {
             return rundePReisAuf(1.00 + random.nextDouble() * 6.00); // 1.00€ - 7.00€
         } else if (lowerName.contains("brot") || lowerName.contains("brötchen")) {
             return rundePReisAuf(0.50 + random.nextDouble() * 3.50); // 0.50€ - 4.00€
-        } else if (lowerName.contains("getränk") || lowerName.contains("wasser") ||
-                  lowerName.contains("saft") || lowerName.contains("cola")) {
+        } else if (lowerName.contains("getränk") || lowerName.contains("wasser")
+                  || lowerName.contains("saft") || lowerName.contains("cola")) {
             return rundePReisAuf(0.80 + random.nextDouble() * 3.20); // 0.80€ - 4.00€
-        } else if (lowerName.contains("alkohol") || lowerName.contains("bier") ||
-                  lowerName.contains("wein") || lowerName.contains("whisky")) {
+        } else if (lowerName.contains("alkohol") || lowerName.contains("bier")
+                  || lowerName.contains("wein") || lowerName.contains("whisky")) {
             return rundePReisAuf(2.00 + random.nextDouble() * 48.00); // 2.00€ - 50.00€
         } else {
             // Standard-Preisbereich
@@ -218,10 +217,11 @@ public class DatabaseInitializer {
         for (int i = 0; i < 100; i++) {
             // Zufälliges Produkt auswählen
             Produkt produkt = produkte.get(random.nextInt(produkte.size()));
-            
-            // Realistische Verkaufsmenge (meist 1-5 Stück)
+              // Realistische Verkaufsmenge (meist 1-5 Stück)
             int maxMenge = Math.min(produkt.getBestand(), 10);
-            if (maxMenge <= 0) continue; // Überspringe ausverkaufte Produkte
+            if (maxMenge <= 0) {
+                continue; // Überspringe ausverkaufte Produkte
+            }
             
             int menge = 1 + random.nextInt(maxMenge);
             

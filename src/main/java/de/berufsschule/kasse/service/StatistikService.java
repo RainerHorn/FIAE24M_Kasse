@@ -36,11 +36,10 @@ public class StatistikService {
      * 
      * @return Gesamtumsatz des heutigen Tages
      * @throws StatistikServiceException bei Datenbankfehlern
-     */
-    public double getTagesumsatz() throws StatistikServiceException {
+     */    public double getTagesumsatz() throws StatistikServiceException {
         String heute = LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-        String sql = "SELECT COALESCE(SUM(gesamtpreis), 0.0) as umsatz FROM verkaeufe " +
-                    "WHERE DATE(timestamp) = ?";
+        String sql = "SELECT COALESCE(SUM(gesamtpreis), 0.0) as umsatz FROM verkaeufe "
+                    + "WHERE DATE(timestamp) = ?";
         
         try (var conn = dbManager.getConnection();
              var stmt = conn.prepareStatement(sql)) {
@@ -64,11 +63,10 @@ public class StatistikService {
      * 
      * @return Anzahl der heutigen Verkäufe
      * @throws StatistikServiceException bei Datenbankfehlern
-     */
-    public int getAnzahlVerkaufeHeute() throws StatistikServiceException {
+     */    public int getAnzahlVerkaufeHeute() throws StatistikServiceException {
         String heute = LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-        String sql = "SELECT COUNT(*) as anzahl FROM verkaeufe " +
-                    "WHERE DATE(timestamp) = ?";
+        String sql = "SELECT COUNT(*) as anzahl FROM verkaeufe "
+                    + "WHERE DATE(timestamp) = ?";
         
         try (var conn = dbManager.getConnection();
              var stmt = conn.prepareStatement(sql)) {
@@ -178,13 +176,23 @@ public class StatistikService {
             this.id = id;
             this.name = name;
             this.preis = preis;
-            this.verkaufteMenge = verkaufteMenge;
-        }
+            this.verkaufteMenge = verkaufteMenge;        }
 
-        public int getId() { return id; }
-        public String getName() { return name; }
-        public double getPreis() { return preis; }
-        public int getVerkaufteMenge() { return verkaufteMenge; }
+        public int getId() { 
+            return id; 
+        }
+        
+        public String getName() { 
+            return name; 
+        }
+        
+        public double getPreis() { 
+            return preis; 
+        }
+        
+        public int getVerkaufteMenge() { 
+            return verkaufteMenge; 
+        }
 
         @Override
         public String toString() {

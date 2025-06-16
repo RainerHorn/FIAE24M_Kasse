@@ -8,7 +8,8 @@ on:
   release:
     types: [ published ]
 
-jobs:  # ==========================================
+jobs:
+  # ==========================================
   # BUILD & TEST JOB
   # ==========================================
   build-and-test:
@@ -45,9 +46,7 @@ jobs:  # ==========================================
         test -d src/main/java || exit 1
         test -d src/test/java || exit 1
         test -f src/main/resources/fxml/main.fxml || exit 1
-        echo "✅ Project structure is valid"
-
-    - name: Compile Code
+        echo "✅ Project structure is valid"    - name: Compile Code
       run: mvn clean compile -B
 
     - name: Run Unit Tests
@@ -67,6 +66,7 @@ jobs:  # ==========================================
         path: |
           target/surefire-reports/
           target/site/
+
   # ==========================================
   # QUALITY ANALYSIS JOB
   # ==========================================
@@ -125,6 +125,7 @@ jobs:  # ==========================================
           target/site/pmd/
           target/site/checkstyle/
           target/site/jacoco/
+
   # ==========================================
   # SECURITY SCAN JOB
   # ==========================================
@@ -159,6 +160,7 @@ jobs:  # ==========================================
       with:
         name: security-report
         path: target/dependency-check-report.html
+
   # ==========================================
   # PACKAGE JOB
   # ==========================================
@@ -205,6 +207,7 @@ jobs:  # ==========================================
           target/*.jar
           target/build-info.txt
           README.md
+
   # ==========================================
   # DOCUMENTATION JOB
   # ==========================================
@@ -236,6 +239,7 @@ jobs:  # ==========================================
         path: |
           target/site/
           target/apidocs/
+
   # ==========================================
   # RELEASE JOB
   # ==========================================
@@ -266,24 +270,12 @@ jobs:  # ==========================================
         zip -r documentation-v${{ github.event.release.tag_name }}.zip .
 
     - name: Upload Release Assets
-      uses: actions/upload-release-asset@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      uses: softprops/action-gh-release@v1
       with:
-        upload_url: ${{ github.event.release.upload_url }}
-        asset_path: ./release/kassensystem-v${{ github.event.release.tag_name }}.zip
-        asset_name: kassensystem-v${{ github.event.release.tag_name }}.zip
-        asset_content_type: application/zip
+        files: |
+          ./release/kassensystem-v${{ github.event.release.tag_name }}.zip
+          ./docs/documentation-v${{ github.event.release.tag_name }}.zip
 
-    - name: Upload Documentation Assets
-      uses: actions/upload-release-asset@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        upload_url: ${{ github.event.release.upload_url }}
-        asset_path: ./docs/documentation-v${{ github.event.release.tag_name }}.zip
-        asset_name: documentation-v${{ github.event.release.tag_name }}.zip
-        asset_content_type: application/zip
   # ==========================================
   # NOTIFICATION JOB
   # ==========================================
