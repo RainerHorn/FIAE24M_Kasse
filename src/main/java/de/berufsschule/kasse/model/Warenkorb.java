@@ -3,6 +3,7 @@ package de.berufsschule.kasse.model;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 /**
  * Repräsentiert einen Warenkorb für einen Kassenvorgang.
@@ -114,19 +115,15 @@ public class Warenkorb {
 
         for (Verkauf verkauf : verkaeufe) {
             bon.append(verkauf.toString()).append("\n");
-        }
-
-        bon.append("-".repeat(40)).append("\n");
-        bon.append(String.format("GESAMT: %.2f€", berechneGesamtbetrag())).append("\n");
+        }        bon.append("-".repeat(40)).append("\n");
+        bon.append(String.format(Locale.GERMAN, "GESAMT: %.2f€", berechneGesamtbetrag())).append("\n");
         bon.append("=".repeat(40)).append("\n");
         bon.append("Vielen Dank für Ihren Einkauf!\n");
 
         return bon.toString();
-    }
-
-    @Override
+    }    @Override
     public String toString() {
-        return String.format("Warenkorb{%d Artikel, Gesamtbetrag: %.2f€}", 
+        return String.format(Locale.GERMAN, "Warenkorb{%d Artikel, Gesamtbetrag: %.2f€}", 
                            getAnzahlArtikel(), berechneGesamtbetrag());
     }
 }

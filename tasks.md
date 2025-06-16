@@ -27,6 +27,15 @@
 
 ---
 
+## 🐛 Bugfixes & Maintenance
+
+- [x] GitHub CI/CD Locale-Problem behoben (16.06.2025)
+  - Testfehler bei `VerkaufTest.testToString`, `WarenkorbTest.testErstelleBonFormat` und `WarenkorbTest.testToString` behoben
+  - `String.format()` mit `Locale.GERMAN` erweitert für konsistente deutsche Dezimaldarstellung
+  - Alle 50 Tests laufen jetzt erfolgreich auf GitHub Actions
+
+---
+
 ## 🧹 Code-Qualität & Standards
 
 - [x] Alle Checkstyle-Violations beheben (16.06.2025)

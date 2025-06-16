@@ -1,6 +1,7 @@
 package de.berufsschule.kasse.model;
 
 import java.time.LocalDateTime;
+import java.util.Locale;
 
 /**
  * Repräsentiert einen einzelnen Verkauf in einem Kassenvorgang.
@@ -105,11 +106,9 @@ public class Verkauf {
      */
     public void berechneGesamtpreis() {
         this.gesamtpreis = this.menge * this.einzelpreis;
-    }
-
-    @Override
+    }    @Override
     public String toString() {
-        return String.format("%dx %s à %.2f€ = %.2f€", 
+        return String.format(Locale.GERMAN, "%dx %s à %.2f€ = %.2f€", 
                            menge, produktName, einzelpreis, gesamtpreis);
     }
 }
