@@ -33,7 +33,7 @@ jobs:
         distribution: 'temurin'
 
     - name: Cache Maven Dependencies
-      uses: actions/cache@v3
+      uses: actions/cache@v4
       with:
         path: ~/.m2
         key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
@@ -59,7 +59,7 @@ jobs:
       if: always()
 
     - name: Upload Test Results
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       if: always()
       with:
         name: test-results-${{ matrix.java-version }}
@@ -89,7 +89,7 @@ jobs:
         distribution: 'temurin'
 
     - name: Cache Maven Dependencies
-      uses: actions/cache@v3
+      uses: actions/cache@v4
       with:
         path: ~/.m2
         key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
@@ -110,14 +110,14 @@ jobs:
       run: mvn jacoco:report -B
 
     - name: Upload Coverage to Codecov
-      uses: codecov/codecov-action@v3
+      uses: codecov/codecov-action@v4
       with:
         file: target/site/jacoco/jacoco.xml
         flags: unittests
         name: codecov-umbrella
 
     - name: Upload Quality Reports
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: quality-reports
         path: |
@@ -145,7 +145,7 @@ jobs:
         distribution: 'temurin'
 
     - name: Cache Maven Dependencies
-      uses: actions/cache@v3
+      uses: actions/cache@v4
       with:
         path: ~/.m2
         key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
@@ -155,7 +155,7 @@ jobs:
       continue-on-error: true
 
     - name: Upload Security Report
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       if: always()
       with:
         name: security-report
@@ -181,7 +181,7 @@ jobs:
         distribution: 'temurin'
 
     - name: Cache Maven Dependencies
-      uses: actions/cache@v3
+      uses: actions/cache@v4
       with:
         path: ~/.m2
         key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
@@ -200,7 +200,7 @@ jobs:
         echo "Build Number: ${{ github.run_number }}" >> target/build-info.txt
 
     - name: Upload Application Artifacts
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: kassensystem-${{ github.run_number }}
         path: |
@@ -233,7 +233,7 @@ jobs:
       run: mvn site -B
 
     - name: Upload Documentation
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: documentation
         path: |
@@ -251,13 +251,13 @@ jobs:
 
     steps:
     - name: Download Application Artifacts
-      uses: actions/download-artifact@v3
+      uses: actions/download-artifact@v4
       with:
         name: kassensystem-${{ github.run_number }}
         path: ./release
 
     - name: Download Documentation
-      uses: actions/download-artifact@v3
+      uses: actions/download-artifact@v4
       with:
         name: documentation
         path: ./docs
