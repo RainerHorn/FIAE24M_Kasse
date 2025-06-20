@@ -342,44 +342,6 @@
 
 ---
 
-## 🐳 Docker-Integration (20.06.2025)
-
-### Task: Containerisierung des Kassensystems für bessere Deployment-Optionen
-
-- [ ] **Docker-Basis-Setup erstellen (20.06.2025)**
-  - [ ] Dockerfile für JavaFX-Anwendung implementieren
-  - [ ] Multi-stage Build für optimierte Container-Größe
-  - [ ] JavaFX-Dependencies und GUI-Bibliotheken konfigurieren
-  - [ ] Entrypoint-Skript für verschiedene Modi (headless/GUI)
-
-- [ ] **Docker Compose Konfiguration (20.06.2025)**
-  - [ ] docker-compose.yml für verschiedene Betriebsmodi
-  - [ ] Volume-Mappings für persistente Datenbank
-  - [ ] WSLg-Integration für native Windows 11 GUI-Unterstützung
-  - [ ] VcXsrv-Fallback für ältere Windows-Versionen
-
-- [ ] **GUI-Modi implementieren (20.06.2025)**
-  - [ ] Headless-Modus mit Xvfb für Server-Deployments
-  - [ ] WSLg-Modus für native Windows 11 X11-Integration
-  - [ ] VcXsrv-Kompatibilität für Windows 10 und älter
-  - [ ] Automatische Erkennung der verfügbaren GUI-Umgebung
-
-- [ ] **Build-Skripte erweitern (20.06.2025)**
-  - [ ] Docker-Build-Befehle zu bestehenden Build-Skripten hinzufügen
-  - [ ] Start-Skripte für verschiedene Container-Modi
-  - [ ] Dokumentation der Docker-Integration
-
-### Discovered During Work:
-- WSLg-Integration komplexer als erwartet aufgrund JavaFX-Kompatibilität
-- Container benötigt spezielle JavaFX-Konfiguration für Software-Rendering
-- DISPLAY-Variable muss je nach Umgebung dynamisch gesetzt werden
-
-### Branch: `feature/docker-integration`
-### Status: In Bearbeitung
-### Priorität: Medium (Erweiterung für bessere Deployment-Optionen)
-
----
-
 ## 🏆 Projektstatus: **VOLLSTÄNDIG IMPLEMENTIERT UND EINSATZBEREIT**
 A l l e   7 5   C h e c k s t y l e - V i o l a t i o n s   e r f o l g r e i c h   b e h o b e n   a m   1 6 . 0 6 . 2 0 2 5   1 0 : 5 7 
 
